@@ -54,24 +54,30 @@ export class TwitterService {
             accept: 'application/json',
           },
         })
-        .then((odata) => {
-          fs.readFile('twitter.json', function (err, data) {
+        .then(async (odata) => {
+          await fs.readFile('twitter.json', async function (err, data) {
             let tweetsOf;
             if (data == undefined) tweetsOf = [];
             else tweetsOf = JSON.parse(data);
             tweetsOf.push(odata.data);
-            fs.writeFile('twitter.json', JSON.stringify(tweetsOf), (err) => {
-              if (err) throw err;
-              console.log('Done writing');
-            });
+            await fs.writeFile(
+              'twitter.json',
+              JSON.stringify(tweetsOf),
+              (err) => {
+                if (err) throw err;
+                console.log('Done writing');
+              },
+            );
           });
           return 'Saved';
         })
         .catch((error) => {
           console.log(error);
+          return 'Failed';
         });
     } catch (error) {
       console.log(error);
+      return 'Failed';
     }
   }
 
@@ -95,8 +101,8 @@ export class TwitterService {
             accept: 'application/json',
           },
         })
-        .then((data) => {
-          fs.readFile('twitter.json', function (err, data) {
+        .then(async (data) => {
+          await fs.readFile('twitter.json', async function (err, data) {
             let tweetsOf = JSON.parse(data);
             if (Array.isArray(tweetsOf) && tweetsOf.length > 0) {
               let ind = tweetsOf.findIndex((tweet) => {
@@ -107,18 +113,24 @@ export class TwitterService {
             } else {
               tweetsOf = [];
             }
-            fs.writeFile('twitter.json', JSON.stringify(tweetsOf), (err) => {
-              if (err) throw err;
-              console.log('Done writing');
-            });
+            await fs.writeFile(
+              'twitter.json',
+              JSON.stringify(tweetsOf),
+              (err) => {
+                if (err) throw err;
+                console.log('Done writing');
+              },
+            );
           });
           return 'Successfully Deleted';
         })
         .catch((error) => {
           console.log(error);
+          return 'Failed';
         });
     } catch (error) {
       console.log(error);
+      return 'Failed';
     }
   }
 }
