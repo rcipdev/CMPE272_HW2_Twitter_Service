@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter Themed UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #15202b;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+      }
+
+      .twitter-symbol {
+        font-size: 50px;
+        color: #1da1f2;
+        margin-bottom: 20px;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        width: 280px;
+        border-radius: 30px;
+        border: 1px solid #1da1f2;
+        background-color: #192734;
+        color: #ffffff;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 30px;
+        margin: 5px;
+        cursor: pointer;
+        background-color: #1da1f2;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <i class="fab fa-twitter twitter-symbol"></i>
+    <input id="addTxt" type="text" placeholder="Add Tweet" />
+    <div><button onclick="addTweet()">Add Tweet</button></div>
+    &nbsp;&nbsp;
+    <input id="deleteTxt" type="text" placeholder="Delete Tweet" />
+    <div>
+      <button onclick="deleteTweet()">Delete Tweet</button>
+    </div>
+
+    <table
+      id="jsonTable"
+      border="1"
+      style="
+        margin-top: 20px;
+        width: 600px;
+        border-collapse: collapse;
+        background-color: #192734;
+        color: #ffffff;
+      "
+    >
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Tweet</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script src="./app.js">
+      fetchAndDisplayJson();
+    </script>
+  </body>
+</html>
