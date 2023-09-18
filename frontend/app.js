@@ -1,22 +1,22 @@
-function fetchAndDisplayJson() {
+function displayTweets() {
   fetch("/CMPE272_HW2_Twitter_Service/backend/twitter.json")
     .then((response) => response.json())
-    .then((data) => {
+    .then((tweets) => {
       const tableBody = document.querySelector("#jsonTable tbody");
       tableBody.innerHTML = "";
-      data.forEach((item) => {
+      tweets.forEach((tweet) => {
         const row = tableBody.insertRow();
-        row.setAttribute("id", item.data.id.toString());
+        row.setAttribute("id", tweet.data.id.toString());
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
-        cell1.textContent = item.data.id;
-        cell2.textContent = item.data.text;
+        cell1.textContent = tweet.data.id;
+        cell2.textContent = tweet.data.text;
       });
     })
     .catch((error) => console.error("Error fetching JSON:", error));
 }
 
-fetchAndDisplayJson();
+displayTweets();
 
 function addTweet() {
   let tweet = document.getElementById("addTxt").value;
@@ -37,8 +37,7 @@ function addTweet() {
     body: JSON.stringify(data),
   })
     .then((obj) => {
-      console.log(obj);
-      fetchAndDisplayJson();
+      displayTweets();
     })
     .catch((error) => {
       console.log(error);
@@ -59,8 +58,7 @@ function deleteTweet() {
     referrerPolicy: "no-referrer",
   })
     .then((obj) => {
-      console.log(obj);
-      fetchAndDisplayJson();
+      displayTweets();
     })
     .catch((error) => {
       console.log(error);
