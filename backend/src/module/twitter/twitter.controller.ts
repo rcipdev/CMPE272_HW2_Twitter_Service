@@ -14,6 +14,7 @@ export class TwitterController {
   constructor(private twitterService: TwitterService) {}
   @Post('add')
   addTweet(@Body() addTweetDto: AddTweetDto): Promise<string | void> {
+    console.log(addTweetDto);
     return this.twitterService.addTweet(addTweetDto.text);
   }
 

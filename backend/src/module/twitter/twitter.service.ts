@@ -45,6 +45,7 @@ export class TwitterService {
         ),
       );
       const data = { text };
+      console.log(data);
       return await axios
         .post('https://api.twitter.com/2/tweets', data, {
           headers: {
