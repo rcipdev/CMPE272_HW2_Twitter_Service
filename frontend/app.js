@@ -1,5 +1,5 @@
 function fetchAndDisplayJson() {
-  fetch("CMPE272_HW2_Twitter_Service/backend/twitter.json")
+  fetch("/CMPE272_HW2_Twitter_Service/backend/twitter.json")
     .then((response) => response.json())
     .then((data) => {
       const tableBody = document.querySelector("#jsonTable tbody");
